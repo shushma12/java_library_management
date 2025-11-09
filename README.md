@@ -31,6 +31,3 @@ A **Library Management System** built using **JavaServer Faces (JSF)**, **Hibern
 - **Build Tool**: Maven
 
 ---
-
-## Project Structure
-
