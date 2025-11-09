@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core">
+<h:head>
+    <title>LMS - Issue Book</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        body {
+            background: linear-gradient(to right, #fff3e0, #ffffff);
+            min-height: 100vh;
+        }
+
+        .card {
+            border-radius: 1rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .btn-warning {
+            background: linear-gradient(to right, #ffc107, #ffb300);
+            border: none;
+        }
+
+        .btn-warning:hover {
+            background: linear-gradient(to right, #ffb300, #ffc107);
+        }
+
+        .card-header {
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+
+        h3 i {
+            color: #ffd700;
+        }
+
+        .input-group-text i {
+            color: #ffc107;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-warning shadow-sm">
+        <div class="container">
+            <h:link outcome="home" styleClass="navbar-brand fw-bold text-dark">
+                <i class="fas fa-arrow-left me-2"></i> Back to Dashboard
+            </h:link>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="card shadow-lg mt-5">
+                    <div class="card-header bg-warning p-4 text-center">
+                        <h3 class="mb-0 fw-bold text-dark"><i class="fas fa-hand-holding-book me-2"></i>Issue Book</h3>
+                    </div>
+                    <div class="card-body p-5">
+                        <h:form>
+                            <!-- Select Book -->
+                            <div class="mb-4">
+                                <label class="form-label">Select Book to Issue</label>
+                                <h:selectOneMenu value="#{libraryBean.selectedBookId}"
+                                    styleClass="form-select form-select-lg shadow-sm rounded" required="true"
+                                    requiredMessage="Please select a book">
+                                    <f:selectItem itemLabel="-- Choose Available Book --" noSelectionOption="true" />
+                                    <f:selectItems value="#{libraryBean.books}" var="b" itemValue="#{b.id}"
+                                        itemLabel="#{b.title} (Available: #{b.availableCopies})" />
+                                </h:selectOneMenu>
+                            </div>
+
+                            <!-- Select Member -->
+                            <div class="mb-4">
+                                <label class="form-label">Select Member</label>
+                                <h:selectOneMenu value="#{libraryBean.selectedMemberId}"
+                                    styleClass="form-select form-select-lg shadow-sm rounded" required="true"
+                                    requiredMessage="Please select a member">
+                                    <f:selectItem itemLabel="-- Choose Member --" noSelectionOption="true" />
+                                    <f:selectItems value="#{libraryBean.members}" var="m" itemValue="#{m.id}"
+                                        itemLabel="#{m.name} (#{m.email})" />
+                                </h:selectOneMenu>
+                            </div>
+
+                            <!-- Due Date -->
+                            <div class="mb-4">
+                                <label class="form-label">Due Date (YYYY-MM-DD)</label>
+                                <div class="input-group shadow-sm rounded">
+                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                    <h:inputText id="dueDate" value="#{libraryBean.dueDate}" required="true"
+                                        styleClass="form-control form-control-lg rounded-end" placeholder="yyyy-MM-dd">
+                                        <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+                                    </h:inputText>
+                                </div>
+                                <h:message for="dueDate" styleClass="text-danger small mt-1 d-block" />
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="d-grid gap-3">
+                                <h:commandButton value="Confirm Issue" action="#{libraryBean.issueBook}"
+                                    styleClass="btn btn-warning btn-lg fw-bold shadow-sm" />
+                                <h:link value="Cancel" outcome="home"
+                                    styleClass="btn btn-outline-secondary btn-lg fw-bold shadow-sm" />
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</h:body>
+
+</html>

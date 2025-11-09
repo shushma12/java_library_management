@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="4.0" xmlns="[https://jakarta.ee/xml/ns/jakartaee](https://jakarta.ee/xml/ns/jakartaee)" xmlns:xsi="[http://www.w3.org/2001/XMLSchema-instance](http://www.w3.org/2001/XMLSchema-instance)"
+              xsi:schemaLocation="[https://jakarta.ee/xml/ns/jakartaee](https://jakarta.ee/xml/ns/jakartaee) [https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_4_0.xsd](https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_4_0.xsd)">
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case><from-outcome>home</from-outcome><to-view-id>/home.xhtml</to-view-id><redirect/></navigation-case>
+        <navigation-case><from-outcome>add_book</from-outcome><to-view-id>/add_book.xhtml</to-view-id><redirect/></navigation-case>
+        <navigation-case><from-outcome>add_member</from-outcome><to-view-id>/add_member.xhtml</to-view-id><redirect/></navigation-case>
+        <navigation-case><from-outcome>issue</from-outcome><to-view-id>/issue_book.xhtml</to-view-id><redirect/></navigation-case>
+        <navigation-case><from-outcome>return</from-outcome><to-view-id>/return_book.xhtml</to-view-id><redirect/></navigation-case>
+        <navigation-case><from-outcome>reports</from-outcome><to-view-id>/reports.xhtml</to-view-id><redirect/></navigation-case>
+    </navigation-rule>
+</faces-config>
